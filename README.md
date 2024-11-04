@@ -8,7 +8,7 @@
 ## Term 1
 ### Etch-A-Sketch
 Graphics Project with keypress drawing controls with the ability to save images.
-![Running App]()
+![Running App](https://github.com/Tahiyan-Islam/programmingportfolio2024/blob/main/Etch%20A%20Sketch.png?raw=true)
 [Source Code]()
 
 ## Term 2
