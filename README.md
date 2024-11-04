@@ -14,5 +14,5 @@ Graphics Project with keypress drawing controls with the ability to save images.
 ## Term 2
 ### Calculator 
 Object oriented Graphical Calculator with Custom Buttons and UI.
-![](https://github.com/user-attachments/assets/529fd384-c545-4ffc-8829-403be1e2de33)
-[](https://github.com/Tahiyan-Islam/programmingportfolio2024/tree/main/src/Calculator_A2)
+![Running App](https://github.com/user-attachments/assets/529fd384-c545-4ffc-8829-403be1e2de33)
+[Source Code](https://github.com/Tahiyan-Islam/programmingportfolio2024/tree/main/src/Calculator_A2)
