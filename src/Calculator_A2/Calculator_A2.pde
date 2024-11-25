@@ -26,7 +26,7 @@ void setup () {
   buttons [10] = new Button (35, 60, color(#FFA500), "C", false);
   buttons [11] = new Button (110, 60, color(#deff00), "+\n-", false);
   buttons [12] = new Button (835, 60, color(#DAB1DA), "√n", false);
- buttons [13] = new Button (835, 60, color(#DAB1DA), "^-n", false);
+  buttons [13] = new Button (835, 60, color(#DAB1DA), "^-n", false);
   buttons [14] = new Button (235, 60, color(#DAB1DA), "%", false);
   buttons [15] = new Button (85, 220, color(#deff00), ".", false);
   buttons [16] = new Button (135, 220, color(#deff00), "=", false);
@@ -116,7 +116,22 @@ void mousePressed () {
       } else {
         r = PI;
         dVal =str(r);
-        l = PI;
+      }
+    } else if (buttons[i].on && !buttons[i].isNum && buttons[i].val.equals("+\n-")) {
+      if (left) {
+        l = l * -1;
+        dVal = str(l);
+      } else {
+        r = r * -1;
+        dVal =str(r);
+      }
+    } else if (buttons[i].on && !buttons[i].isNum && buttons[i].val.equals(".")) {
+      if (!dVal.contains(".") && left) {
+        dVal += ".";
+        l = float(dVal);
+      } else if (!dVal.contains(".") && !left) {
+        dVal += ".";
+        r = float(dVal);
       }
     } else if (buttons[i].on && !buttons[i].isNum && buttons[i].val.equals("=")) {
       performCalc();
@@ -127,10 +142,31 @@ void mousePressed () {
       } else {
         dVal = dVal.substring(0, dVal.length() -1);
         r = float (dVal);
-      } 
+      }
+    } else if (buttons[i].on && !buttons[i].isNum && buttons[i].val.equals("√")) {
+      if (left) {
+        l = sq(l);
+        dVal = str(l);
+      } else {
+        r = sq(r);
+        dVal =str(r);
+      }
+    } else if (buttons[i].on && !buttons[i].isNum && buttons[i].val.equals("%")) {
+      if (left) {
+        l = l * 0.01;
+        dVal = str(l);
+      } else {
+        r = r*0.01;
+        dVal =str(r);
+      }
+    } else if (buttons[i].on && !buttons[i].isNum && buttons[i].val.equals("%")) {
+      dVal = "0";
+      op = '^';
+      left = false;
     }
   }
 }
+
 
 
 void performCalc() {
@@ -165,58 +201,72 @@ void handleEvent (String keyVal, boolean isNum) {
     }
     r = float(dVal);
   } else if (keyVal.equals(".")) {
-  if (!dVal.contains(".") && left) {
-    dVal+= ".";
-    l = float(dVal);
-  } else if (!dVal.contains(".") && !left) { 
-    dVal += ".";
-    r= float(dVal);
-  }
-  else if (keyVal.equals("+")) {
+    if (!dVal.contains(".") && left) {
+      dVal+= ".";
+      l = float(dVal);
+    } else if (!dVal.contains(".") && !left) {
+      dVal += ".";
+      r= float(dVal);
+    }
+  } else if (keyVal.equals("+")) {
     op = '+';
-      left = !left;
-      dVal = "0";
+    left = !left;
+    dVal = "0";
+  } else if (keyVal.equals("-")) {
+    op = '-';
+    left = !left;
+    dVal = "0";
+  } else if (keyVal.equals("x")) {
+    op = 'x';
+    left = !left;
+    dVal = "0";
+  } else if (keyVal.equals("÷")) {
+    op = '÷';
+    left = !left;
+    dVal = "0";
+  } else if (keyVal.equals("=")) {
+    performCalc();
   }
 }
-}
 
 
-  void keyPressed () {
-    println("key:" + key);
-    println("keycode:" + keyCode);
-    if (key == 0 || keyCode == 96 || keyCode == 48) {
-      handleEvent("0", true);
-    } else if (keyCode == 97 || keyCode == 49) {
-      handleEvent ("1", true);
-    } else if (keyCode == 98 || keyCode == 50 ) {
-      handleEvent ("2", true);
-    } else if (keyCode == 99 || keyCode == 51) {
-      handleEvent ("3", true);
-    } else if (keyCode == 100 || keyCode == 52) {
-      handleEvent ("4", true);
-    } else if (keyCode == 101 || keyCode == 53 ) {
-      handleEvent ("5", true);
-    } else if (keyCode == 102 || keyCode == 54) {
-      handleEvent ("6", true);
-    } else if (keyCode == 103 || keyCode == 55) {
-      handleEvent ("7", true);
-    } else if (keyCode == 104 || keyCode == 56) {
-      handleEvent ("8", true);
-    } else if (keyCode == 105 || keyCode == 57) {
-      handleEvent ("9", true);
-    } else if (keyCode == 61) {
-      handleEvent ("=", false);
-    } else if (keyCode == 110 || keyCode == 46) {
-      handleEvent (".", false);
-    } else if (keyCode == 107) {
-      handleEvent ("+", false);
-    } else if (keyCode == 45 || keyCode == 189) {
-      handleEvent ("-", false);
-    } else if (keyCode == 88) {
-      handleEvent ("x", false);
-    } else if (keyCode == 61 || keyCode == 10) {
-      handleEvent ("=", false);
-  }  else if (keyCode == 46  || keyCode == 110) {
-      handleEvent (".", false);
+
+void keyPressed () {
+  println("key:" + key);
+  println("keycode:" + keyCode);
+  if (key == 0 || keyCode == 96 || keyCode == 48) {
+    handleEvent("0", true);
+  } else if (keyCode == 97 || keyCode == 49) {
+    handleEvent ("1", true);
+  } else if (keyCode == 98 || keyCode == 50 ) {
+    handleEvent ("2", true);
+  } else if (keyCode == 99 || keyCode == 51) {
+    handleEvent ("3", true);
+  } else if (keyCode == 100 || keyCode == 52) {
+    handleEvent ("4", true);
+  } else if (keyCode == 101 || keyCode == 53 ) {
+    handleEvent ("5", true);
+  } else if (keyCode == 102 || keyCode == 54) {
+    handleEvent ("6", true);
+  } else if (keyCode == 103 || keyCode == 55) {
+    handleEvent ("7", true);
+  } else if (keyCode == 104 || keyCode == 56) {
+    handleEvent ("8", true);
+  } else if (keyCode == 105 || keyCode == 57) {
+    handleEvent ("9", true);
+  } else if (keyCode == 61) {
+    handleEvent ("=", false);
+  } else if (keyCode == 110 || keyCode == 46) {
+    handleEvent (".", false);
+  } else if (keyCode == 107) {
+    handleEvent ("+", false);
+  } else if (keyCode == 45 || keyCode == 189) {
+    handleEvent ("-", false);
+  } else if (keyCode == 88) {
+    handleEvent ("x", false);
+  } else if (keyCode == 61 || keyCode == 10) {
+    handleEvent ("=", false);
+  } else if (keyCode == 46  || keyCode == 110) {
+    handleEvent (".", false);
   }
 }
