@@ -6,6 +6,10 @@
 * I want to improve my computer programming language and hope to progressively learn more about computer science and leave the class with more knowledge each day.
 * My typing speed ranges from 70 to 90 at times usually with 90-100% accuracy. 
 
+## Certifications Earned 
+### Graphics Design 1
+### Computer Programming 1
+
 ## Term 1
 ### Etch-A-Sketch
 Graphics Project with keypress drawing controls with the ability to save images.
