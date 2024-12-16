@@ -1,4 +1,5 @@
 # Tahiyan's Programming | Portfolio 2024-25
+##Contact Info: 410351@graniteschools.org
 * Projected Graduation 2028 
 * Interested in Soccer & Basketball
 * I took Creative Coding in 8th Grade and have some experience with programs such as Python, JavaScript and Scratch.
